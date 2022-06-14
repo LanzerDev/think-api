@@ -8,18 +8,20 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 //servicios
 const _usuariosService = new usuarios();
+
 //dependecias
 app.set('json spaces', 2)
 app.use(bodyParser.json());
 //variables
 
+app.use(cors())
 
 
 
 
 
 app.get('/', (req, res)=>{
-    res.send('Hola, server en express')
+    res.send('think-api')
 })
 
 app.get('/api/usuarios/', (req, res)=>{
@@ -27,27 +29,13 @@ app.get('/api/usuarios/', (req, res)=>{
     res.json(users)
 })
 
-app.post('/api/newUser/', (req, res)=>{
+app.post('/api/newuser/', (req, res)=>{
     const body = req.body;
     const newUser = _usuariosService.createUser(body);
     res.status(201).json({
         "message":"usuario creado"
     })
 })
- 
-
-//const whitelist = ['https://localhost:3000', 'localhost:4200', 'http://localhost:56833/'];
-
-// const options = {
-//     origin: (origin, callback)=>{
-//         if(whitelist.includes(origin)){
-//             callback(null, true);
-//         } else {
-//             callback(new Error('no permitido'))
-//         }
-//     }
-// }
-app.use(cors())
 
 app.listen(port, ()=>{
     console.log('port' + port)

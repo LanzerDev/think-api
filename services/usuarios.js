@@ -6,7 +6,6 @@ class usuarios {
     constructor() {
         this.users = [];
         this.getUsuarios()
-
         this.nombre;
         this.apellido1;
         this.apellido2;
