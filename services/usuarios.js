@@ -93,8 +93,9 @@ class usuarios {
         '${this.numero_personas_hogar}\r\n',
         '${this.numero_personas_trabajaron}\r\n');`
 
-        const checkCorreo = `SELECT * FROM `+'usuarios'+` WHERE `+'Correo'+` = "`+this.email+`"`;
-        const checkNumero = `SELECT * FROM `+'usuarios'+` WHERE `+'Telefono'+` = "`+this.telefono+`"`
+        const checkCorreo = `SELECT * FROM `+"`usuarios`"+` WHERE Correo = "`+this.email+`"`
+        const checkNumero = `SELECT * FROM `+"`usuarios`"+` WHERE Telefono = "`+this.telefono+`"`
+
         conexion.query(checkCorreo, (error, res, fields)=>{
             if(error){
                 throw error
@@ -109,7 +110,7 @@ class usuarios {
                     if(res.length > 0){
                         callback('Este numero ya sido registrado', "1")
                     } else {
-                        conexion.query(query)
+                      //  conexion.query(query)
                         callback('Usuario registrado correctamente', "2")
                     }
                 })
