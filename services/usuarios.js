@@ -109,7 +109,7 @@ class usuarios {
                     if(res.length > 0){
                         callback('Este numero ya sido registrado', "1")
                     } else {
-                        // conexion.query(query)
+                        conexion.query(query)
                         callback('Usuario registrado correctamente', "2")
                     }
                 })
@@ -119,7 +119,7 @@ class usuarios {
     }
 
     deleteUser(){
-        
+
     }
 }
 
