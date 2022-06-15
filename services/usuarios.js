@@ -8,7 +8,6 @@ class usuarios {
         this.users = [];
         this.message_success = "success";
         this.estatus;
-        this.getUsuarios()
         this.nombre;
         this.apellido1;
         this.apellido2;
@@ -32,20 +31,17 @@ class usuarios {
         this.numero_personas_trabajaron;
         this.comentarios;
     }
-    getUsuarios() {
-        conexion.query('SELECT * FROM usuarios', (err, res, fields) => {
+
+    getUsuarios(call) {
+        const get_usuarios = 'SELECT * FROM usuarios';
+        conexion.query(get_usuarios, (err, res, fields) => {
             if (err) {
                 throw err;
             }
-            res.forEach(element => {
-                this.users.push(element)
-            });
-        });
+            call(res)
+        })
     }
 
-    findUsers() {
-        return this.users;
-    }
 
 
     createUser(data, callback) {

@@ -26,8 +26,9 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/api/usuarios/', (req, res)=>{
-    const users = _usuariosService.findUsers()
-    res.json(users)
+    const users = _usuariosService.getUsuarios((result)=>{
+        res.json(result)
+    })
 })
 
 app.get('/api/usuarios/:id', (req, res)=>{
