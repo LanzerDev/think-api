@@ -5,6 +5,8 @@ class usuarios {
 
     constructor() {
         this.users = [];
+        this.message_success = "success";
+        this.estatus;
         this.getUsuarios()
         this.nombre;
         this.apellido1;
@@ -44,7 +46,7 @@ class usuarios {
     }
 
 
-    createUser(data) {
+    createUser(data, callback) {
         const newUser = { ...data };
         this.users.push(newUser)
         this.nombre = newUser.nombre;
@@ -91,9 +93,33 @@ class usuarios {
         '${this.numero_personas_hogar}\r\n',
         '${this.numero_personas_trabajaron}\r\n');`
 
-        console.log('usuario creado')
-        conexion.query(query)
-        return newUser;
+        const checkCorreo = `SELECT * FROM `+'usuarios'+` WHERE `+'Correo'+` = "`+this.email+`"`;
+        const checkNumero = `SELECT * FROM `+'usuarios'+` WHERE `+'Telefono'+` = "`+this.telefono+`"`
+        conexion.query(checkCorreo, (error, res, fields)=>{
+            if(error){
+                throw error
+            }
+            if(res.length > 0){
+                callback('Este correo ya a sido registrado', "0")
+            } else {
+                conexion.query(checkNumero, (error, res, fields)=>{
+                    if(error){
+                        throw error
+                    }
+                    if(res.length > 0){
+                        callback('Este numero ya sido registrado', "1")
+                    } else {
+                        // conexion.query(query)
+                        callback('Usuario registrado correctamente', "2")
+                    }
+                })
+            }
+        })
+        return this.message_success;
+    }
+
+    deleteUser(){
+        
     }
 }
 

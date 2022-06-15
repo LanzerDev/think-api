@@ -5,7 +5,8 @@ const port = 3000;
 const moment = require('moment');
 const usuarios = require('./services/usuarios.js')
 const bodyParser = require('body-parser')
-const cors = require('cors')
+const cors = require('cors');
+const { clearScreenDown } = require('readline');
 //servicios
 const _usuariosService = new usuarios();
 
@@ -31,11 +32,13 @@ app.get('/api/usuarios/', (req, res)=>{
 
 app.post('/api/newuser/', (req, res)=>{
     const body = req.body;
-    const newUser = _usuariosService.createUser(body);
-    res.status(201).json({
-        "message":"usuario creado"
-    })
-})
+    const newUser = _usuariosService.createUser(body, (result, estatus)=>{
+        res.json({
+            "message": result,
+            "estatus": estatus
+        });
+    });
+}) 
 
 app.listen(port, ()=>{
     console.log('port' + port)
