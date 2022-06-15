@@ -30,6 +30,7 @@ class usuarios {
         this.tiene_internet;
         this.numero_personas_hogar;
         this.numero_personas_trabajaron;
+        this.comentarios;
     }
     getUsuarios() {
         conexion.query('SELECT * FROM usuarios', (err, res, fields) => {
@@ -51,27 +52,27 @@ class usuarios {
         const newUser = { ...data };
         this.users.push(newUser)
 
-        this.nombre = newUser.nombre;
-        this.apellido1 = newUser.apellido1;
-        this.apellido2 = newUser.apellido2;
-        this.email = newUser.email;
-        this.telefono = newUser.telefono;
-        this.genero = newUser.genero;
-        this.fecha_nacimiento = newUser.fecha_nacimiento
-        this.edad = newUser.edad;
-        this.estado = newUser.estado;
-        this.municipio = newUser.municipio;
-        this.nivel_estudios = newUser.nivel_estudios;
-        this.carrera = newUser.carrera;
-        this.ocupacion = newUser.ocupacion;
-        this.nivel_ingresos = newUser.nivel_ingresos;
-        this.estado_civil = newUser.estado_civil;
+        this.nombre = newUser.Nombre;
+        this.apellido1 = newUser.Apellido_1;
+        this.apellido2 = newUser.Apellido_2;
+        this.email = newUser.Correo;
+        this.telefono = newUser.Telefono;
+        this.genero = newUser.Genero;
+        this.fecha_nacimiento = newUser.Fecha_nacimiento
+        this.edad = newUser.Edad;
+        this.estado = newUser.Estado;
+        this.municipio = newUser.Municipio;
+        this.nivel_estudios = newUser.Nivel_estudios;
+        this.carrera = newUser.Carrera_completo;
+        this.ocupacion = newUser.Ocupacion;
+        this.nivel_ingresos = newUser.Ingresos_mensual;
+        this.estado_civil = newUser.Estado_civil;
         this.tiene_hijos = newUser.tiene_hijos;
-        this.tiene_hijos_menores18 = newUser.tiene_hijos_menores18;
-        this.numero_automoviles = newUser.numero_automoviles;
-        this.tiene_internet = newUser.tiene_internet;
-        this.numero_personas_hogar = newUser.numero_personas_hogar;
-        this.numero_personas_trabajaron = newUser.numero_personas_trabajaron;
+        this.tiene_hijos_menores18 = newUser.Tiene_hijos_men_18;
+        this.numero_automoviles = newUser.Automoviles_hogar;
+        this.tiene_internet = newUser.tiene_Internet;
+        this.numero_personas_hogar = newUser.Personas_hogar;
+        this.numero_personas_trabajaron = newUser.Personas_hogar_trabajaron;
 
         const query = `INSERT INTO usuarios VALUES (NULL,'`+this.nombre+`','`+this.apellido1+`','`+this.apellido2+`','`+this.email+`','`+this.telefono+`','`+this.genero+`','`+this.fecha_nacimiento+`','`+this.edad+`','`+this.estado+`','`+this.municipio+`','`+this.nivel_estudios+`','`+this.carrera+`','`+this.ocupacion+`','`+this.nivel_ingresos+`','`+this.estado_civil+`','`+this.tiene_hijos+`','`+this.tiene_hijos_menores18+`','`+this.numero_automoviles+`','`+this.tiene_internet+`','`+this.numero_personas_hogar+`','`+this.numero_personas_trabajaron+`','...')` 
 
