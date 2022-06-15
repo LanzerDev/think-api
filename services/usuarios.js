@@ -1,3 +1,4 @@
+const { query } = require('express');
 const conexion = require('../conexion.js')
 
 
@@ -49,6 +50,7 @@ class usuarios {
     createUser(data, callback) {
         const newUser = { ...data };
         this.users.push(newUser)
+
         this.nombre = newUser.nombre;
         this.apellido1 = newUser.apellido1;
         this.apellido2 = newUser.apellido2;
@@ -70,28 +72,16 @@ class usuarios {
         this.tiene_internet = newUser.tiene_internet;
         this.numero_personas_hogar = newUser.numero_personas_hogar;
         this.numero_personas_trabajaron = newUser.numero_personas_trabajaron;
-        const query = `INSERT INTO usuarios VALUES (NULL,'
-        ${this.nombre}\r\n',
-        '${this.apellido1}\r\n',
-        '${this.apellido2}\r\n',
-        '${this.email}\r\n',
-        '${this.telefono}\r\n',
-        '${this.genero}\r\n',
-        '${this.fecha_nacimiento}\r\n',
-        '${this.edad}\r\n',
-        '${this.estado}\r\n',
-        '${this.municipio}\r\n',
-        '${this.nivel_estudios}\r\n',
-        '${this.carrera}\r\n',
-        '${this.ocupacion}\r\n',
-        '${this.nivel_ingresos}\r\n',
-        '${this.estado_civil}\r\n',
-        '${this.tiene_hijos}\r\n',
-        '${this.tiene_hijos_menores18}\r\n',
-        '${this.numero_automoviles}\r\n',
-        '${this.tiene_internet}\r\n',
-        '${this.numero_personas_hogar}\r\n',
-        '${this.numero_personas_trabajaron}\r\n');`
+
+        const query = `INSERT INTO usuarios VALUES (NULL,'`+this.nombre+`','`+this.apellido1+`','`+this.apellido2+`','`+this.email+`','`+this.telefono+`','`+this.genero+`','`+this.fecha_nacimiento+`','`+this.edad+`','`+this.estado+`','`+this.municipio+`','`+this.nivel_estudios+`','`+this.carrera+`','`+this.ocupacion+`','`+this.nivel_ingresos+`','`+this.estado_civil+`','`+this.tiene_hijos+`','`+this.tiene_hijos_menores18+`','`+this.numero_automoviles+`','`+this.tiene_internet+`','`+this.numero_personas_hogar+`','`+this.numero_personas_trabajaron+`')` 
+
+  
+        // '${this.tiene_hijos}\r\n',
+        // '${this.tiene_hijos_menores18}\r\n',
+        // '${this.numero_automoviles}\r\n',
+        // '${this.tiene_internet}\r\n',
+        // '${this.numero_personas_hogar}\r\n',
+        // '${this.numero_personas_trabajaron}\r\n');`
 
         const checkCorreo = `SELECT * FROM usuarios WHERE Correo LIKE "`+this.email+`%"`
         const checkNumero = `SELECT * FROM usuarios WHERE Telefono LIKE "`+this.telefono+`%"`
@@ -111,7 +101,7 @@ class usuarios {
                     if(res.length > 0){
                         callback('Este numero ya sido registrado', "1")
                     } else {
-                        conexion.query(query)
+                        conexion.query(query) 
                         callback('Usuario registrado correctamente', "2")
                     }
                 })
@@ -120,8 +110,30 @@ class usuarios {
         return this.message_success;
     }
 
-    deleteUser(){
+    deleteUser(id, callback){
+        const delete_usuario = `DELETE FROM usuarios WHERE id_usuario = ${id}`;
+        conexion.query(delete_usuario, (err, res, field)=>{
+            if(err){
+                throw err
+            }
+            if(res.affectedRows > 0){
+                callback("usuario eliminado","0"); 
+            } else {
+                callback("usuario no existe", "1")
+            }
+        })
+    }
 
+    getUser(id, callback){
+        const get_usuario = `SELECT * FROM usuarios WHERE id_usuario = ${id}`;
+
+        conexion.query(get_usuario, (err, res, field)=>{
+            if(err){
+                throw err
+            }
+
+            callback(res)
+        })
     }
 }
 

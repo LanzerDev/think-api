@@ -30,6 +30,25 @@ app.get('/api/usuarios/', (req, res)=>{
     res.json(users)
 })
 
+app.get('/api/usuarios/:id', (req, res)=>{
+    const id_usuario = req.params.id;
+    const usuario = _usuariosService.getUser(id_usuario, (result)=>{
+        res.json({
+            "usuario":result
+        })
+    })
+})
+
+app.delete('/api/borrarusuario/:id', (req, res)=>{
+    const id_usuario = req.params.id;
+    const usuario = _usuariosService.deleteUser(id_usuario, (result, estatus)=>{
+        res.json({
+            "message": result,
+            "estatus": estatus
+        })
+    })
+})
+
 app.post('/api/newuser/', (req, res)=>{
     const body = req.body;
     const newUser = _usuariosService.createUser(body, (result, estatus)=>{
