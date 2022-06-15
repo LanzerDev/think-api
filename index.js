@@ -46,7 +46,7 @@ app.delete('/api/borrarusuario/:id', (req, res)=>{
             "message": result,
             "estatus": estatus
         })
-    })
+    }) 
 })
 
 app.post('/api/newuser/', (req, res)=>{
