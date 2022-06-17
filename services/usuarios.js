@@ -63,10 +63,10 @@ class usuarios {
         this.ocupacion = newUser.Ocupacion;
         this.nivel_ingresos = newUser.Ingresos_mensual;
         this.estado_civil = newUser.Estado_civil;
-        this.tiene_hijos = newUser.tiene_hijos;
+        this.tiene_hijos = newUser.Tiene_hijos;
         this.tiene_hijos_menores18 = newUser.Tiene_hijos_men_18;
         this.numero_automoviles = newUser.Automoviles_hogar;
-        this.tiene_internet = newUser.tiene_Internet;
+        this.tiene_internet = newUser.Internet;
         this.numero_personas_hogar = newUser.Personas_hogar;
         this.numero_personas_trabajaron = newUser.Personas_hogar_trabajaron;
 
