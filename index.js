@@ -17,20 +17,8 @@ app.use(bodyParser.json());
 
 app.use(cors())
 
-const whitelist = ['http://localhost:3000', 'https://thinkformulario.somosthink.com/', 'http://localhost:4200/admin']
 
-const corsOptions = {
-    origin: function(origin, callback){
-        if(whitelist.indexOf(origin) != -1){
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS jeje'))
-        }
-    }
-}
-
-
-app.get('/', cors(corsOptions), (req, res)=>{
+app.get('/', (req, res)=>{
     res.send('think-api')
 })
 
@@ -60,7 +48,7 @@ app.delete('/api/borrarusuario/:id', (req, res)=>{
     }) 
 })
 
-app.post('/api/newuser/', cors(corsOptions), (req, res)=>{
+app.post('/api/newuser/', (req, res)=>{
     const body = req.body;
     const newUser = _usuariosService.createUser(body, (result, estatus)=>{
         res.json({
@@ -70,7 +58,7 @@ app.post('/api/newuser/', cors(corsOptions), (req, res)=>{
     });
 }) 
 
-app.put('/api/comentario/:id', cors(corsOptions),(req, res)=>{
+app.put('/api/comentario/:id',(req, res)=>{
     const id_usuario = req.params.id;
     const comentario = req.body.Comentarios;
     const enviar_comentario = _usuariosService.saveComentarios(comentario, id_usuario, (result)=>{
