@@ -32,6 +32,7 @@ app.get('/api/usuarios/', (req, res)=>{
 })
 
 app.get('/api/usuarios/:id', (req, res)=>{
+    
     const id_usuario = req.params.id;
     const usuario = _usuariosService.getUser(id_usuario, (result)=>{
         res.json({
@@ -51,6 +52,8 @@ app.delete('/api/borrarusuario/:id', (req, res)=>{
 })
 
 app.post('/api/newuser/', (req, res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const body = req.body;
     const newUser = _usuariosService.createUser(body, (result, estatus)=>{
         res.json({
@@ -61,10 +64,10 @@ app.post('/api/newuser/', (req, res)=>{
 }) 
 
 app.put('/api/comentario/:id',(req, res)=>{
-    const id_usuario = req.params.id;
-    const comentario = req.body.Comentarios;
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const id_usuario = req.params.id;
+    const comentario = req.body.Comentarios;
     const enviar_comentario = _usuariosService.saveComentarios(comentario, id_usuario, (result)=>{
         res.json({
         "message": result
