@@ -60,6 +60,17 @@ app.post('/api/newuser/', (req, res)=>{
     });
 }) 
 
+app.put('/api/comentario/:id',(req, res)=>{
+    const id_usuario = req.params.id;
+    const comentario = req.body.Comentarios;
+    const enviar_comentario = _usuariosService.saveComentarios(comentario, id_usuario, (result)=>{
+        res.json({
+        "message": result
+        })
+    })
+})
+
 app.listen(port, ()=>{
     console.log('port' + port)
 })
+ 

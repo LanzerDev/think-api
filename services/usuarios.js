@@ -124,6 +124,19 @@ class usuarios {
             callback(res)
         })
     }
+
+    saveComentarios(coment, id, callback){
+        const comentario = coment;
+        const save_comentario = `UPDATE usuarios SET Comentarios = '${comentario}' WHERE id_usuario = '${id}'`
+        conexion.query(save_comentario, (err, res, field)=>{
+            if(err){
+                throw err
+            }
+            if(res.changedRows > 0){
+                callback("Se actualizo el comentario c:")
+            }
+        })
+    }
 }
 
 module.exports = usuarios;
