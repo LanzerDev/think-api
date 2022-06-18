@@ -63,6 +63,8 @@ app.post('/api/newuser/', (req, res)=>{
 app.put('/api/comentario/:id',(req, res)=>{
     const id_usuario = req.params.id;
     const comentario = req.body.Comentarios;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const enviar_comentario = _usuariosService.saveComentarios(comentario, id_usuario, (result)=>{
         res.json({
         "message": result
