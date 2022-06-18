@@ -1,21 +1,26 @@
 //importaciones
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3000 || process.env.PORT;
 const moment = require('moment');
 const usuarios = require('./services/usuarios.js')
 const bodyParser = require('body-parser')
 const cors = require('cors');
-const { clearScreenDown } = require('readline');
+
 //servicios
 const _usuariosService = new usuarios();
+
+app.use(cors({
+    origin: '*'
+}))
+
+
 
 //dependecias
 app.set('json spaces', 2)
 app.use(bodyParser.json());
 //variables
 
-app.use(cors())
 
 
 app.get('/', (req, res)=>{
@@ -69,6 +74,6 @@ app.put('/api/comentario/:id',(req, res)=>{
 })
 
 app.listen(port, ()=>{
-    console.log('port' + port)
+    console.log('port ' + port)
 })
  
