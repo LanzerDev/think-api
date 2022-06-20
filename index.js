@@ -73,6 +73,16 @@ app.put('/api/comentario/:id',(req, res)=>{
     })
 })
 
+app.get('/api/login', (req, res)=>{
+    const body = req.body;
+    const admin = _usuariosService.login(body, (estatus, message)=>{
+        res.json({
+            "estatus": estatus,
+            "message": message
+        })
+    })
+})
+
 app.listen(port, ()=>{
     console.log('port ' + port)
 })

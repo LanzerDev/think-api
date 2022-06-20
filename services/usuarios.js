@@ -137,6 +137,26 @@ class usuarios {
             }
         })
     }
+
+    login(user, callback){
+        const usuario = user.usuario;
+        const password = user.password;
+        const checkUser = `SELECT * FROM administradores WHERE usuario LIKE '${usuario}'`
+        conexion.query(checkUser, (err, res, field)=>{
+            if(err){
+                throw err
+            }
+            if(res.length > 0){
+                if(password === res[0].password){
+                    callback("1", "login")
+                } else {
+                    callback("0", "contraseña incorrecta")
+                } 
+            } else {
+                callback("2", "Usuario no existe")
+            }
+        })
+    }
 }
 
 module.exports = usuarios;
