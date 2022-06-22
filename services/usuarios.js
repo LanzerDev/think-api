@@ -18,6 +18,9 @@ class usuarios {
         this.edad;
         this.estado;
         this.municipio;
+        this.calle;
+        this.numero;
+        this.colonia;
         this.nivel_estudios;
         this.carrera;
         this.ocupacion;
@@ -56,6 +59,9 @@ class usuarios {
         this.edad = newUser.Edad;
         this.estado = newUser.Estado;
         this.municipio = newUser.Municipio;
+        this.calle = newUser.Calle;
+        this.numero = newUser.Numero;
+        this.colonia = newUser.Colonia;
         this.nivel_estudios = newUser.Nivel_estudios;
         this.carrera = newUser.Carrera_completo;
         this.ocupacion = newUser.Ocupacion;
@@ -68,7 +74,7 @@ class usuarios {
         this.numero_personas_hogar = newUser.Personas_hogar;
         this.numero_personas_trabajaron = newUser.Personas_hogar_trabajaron;
 
-        const query = `INSERT INTO usuarios VALUES (NULL,'`+this.nombre+`','`+this.apellido1+`','`+this.apellido2+`','`+this.email+`','`+this.telefono+`','`+this.genero+`','`+this.fecha_nacimiento+`','`+this.edad+`','`+this.estado+`','`+this.municipio+`','`+this.nivel_estudios+`','`+this.carrera+`','`+this.ocupacion+`','`+this.nivel_ingresos+`','`+this.estado_civil+`','`+this.tiene_hijos+`','`+this.tiene_hijos_menores18+`','`+this.numero_automoviles+`','`+this.tiene_internet+`','`+this.numero_personas_hogar+`','`+this.numero_personas_trabajaron+`','...')`;
+        const query = `INSERT INTO usuarios VALUES (NULL,'`+this.nombre+`','`+this.apellido1+`','`+this.apellido2+`','`+this.email+`','`+this.telefono+`','`+this.genero+`','`+this.fecha_nacimiento+`','`+this.edad+`','`+this.estado+`','`+this.municipio+`','`+this.calle+`','`+this.numero+`','`+this.colonia+`','`+this.nivel_estudios+`','`+this.carrera+`','`+this.ocupacion+`','`+this.nivel_ingresos+`','`+this.estado_civil+`','`+this.tiene_hijos+`','`+this.tiene_hijos_menores18+`','`+this.numero_automoviles+`','`+this.tiene_internet+`','`+this.numero_personas_hogar+`','`+this.numero_personas_trabajaron+`','...')`;
         const checkCorreo = `SELECT * FROM usuarios WHERE Correo LIKE "`+this.email+`%"`
         const checkNumero = `SELECT * FROM usuarios WHERE Telefono LIKE "`+this.telefono+`%"`
 
@@ -94,7 +100,7 @@ class usuarios {
                         callback('Usuario registrado correctamente', "2")
                     }
                 })
-            }
+            } 
         })
         return this.message_success;
     }

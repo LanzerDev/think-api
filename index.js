@@ -42,7 +42,7 @@ app.get('/api/usuarios/:id', (req, res)=>{
         })
     })
 })
-
+ 
 app.delete('/api/borrarusuario/:id', (req, res)=>{
     const id_usuario = req.params.id;
     const usuario = _usuariosService.deleteUser(id_usuario, (result, estatus)=>{
