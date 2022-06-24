@@ -75,33 +75,22 @@ class usuarios {
         this.numero_personas_trabajaron = newUser.Personas_hogar_trabajaron;
 
         const query = `INSERT INTO usuarios VALUES (NULL,'`+this.nombre+`','`+this.apellido1+`','`+this.apellido2+`','`+this.email+`','`+this.telefono+`','`+this.genero+`','`+this.fecha_nacimiento+`','`+this.edad+`','`+this.estado+`','`+this.municipio+`','`+this.calle+`','`+this.numero+`','`+this.colonia+`','`+this.nivel_estudios+`','`+this.carrera+`','`+this.ocupacion+`','`+this.nivel_ingresos+`','`+this.estado_civil+`','`+this.tiene_hijos+`','`+this.tiene_hijos_menores18+`','`+this.numero_automoviles+`','`+this.tiene_internet+`','`+this.numero_personas_hogar+`','`+this.numero_personas_trabajaron+`','...')`;
-        const checkCorreo = `SELECT * FROM usuarios WHERE Correo LIKE "`+this.email+`%"`
         const checkNumero = `SELECT * FROM usuarios WHERE Telefono LIKE "`+this.telefono+`%"`
 
-        conexion.query(checkCorreo, (error, res, fields)=>{
+        conexion.query(checkNumero, (error, res, fields)=>{
             if(error){
                 throw error
             }
-
             if(res.length > 0){
-                console.log('correo ya en uso')
-                callback('Este correo ya a sido registrado', "0")
+                console.log('telefono ya en uso')
+                callback('Este numero ya sido registrado', "1")
             } else {
-                conexion.query(checkNumero, (error, res, fields)=>{
-                    if(error){
-                        throw error
-                    }
-                    if(res.length > 0){
-                        console.log('telefono ya en uso')
-                        callback('Este numero ya sido registrado', "1")
-                    } else {
-                        conexion.query(query) 
-                        console.log("usuario registrado")
-                        callback('Usuario registrado correctamente', "2")
-                    }
-                })
-            } 
-        })
+                conexion.query(query) 
+                console.log("usuario registrado")
+                callback('Usuario registrado correctamente', "2")
+            }
+        });
+
         return this.message_success;
     }
 
