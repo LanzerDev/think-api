@@ -7,6 +7,13 @@ const conexion = mysql.createConnection({
     password: 'SithhMastahh189!'
 });
 
+// const conexion = mysql.createConnection({
+//     host: 'localhost',
+//     database: 'think_bdd',
+//     user: 'root',
+//     password: '1234'
+// });
+
 conexion.connect((error)=>{
     if(error){
         throw error;

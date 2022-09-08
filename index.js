@@ -15,12 +15,10 @@ app.use(cors({
 }))
 
 
-
 //dependecias
 app.set('json spaces', 2)
 app.use(bodyParser.json());
 //variables
-
 
 
 app.get('/', (req, res)=>{
