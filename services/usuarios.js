@@ -34,7 +34,7 @@ class usuarios {
         this.numero_personas_trabajaron;
         this.comentarios;
     }
-
+//laptop update
     getUsuarios(call) {
         const get_usuarios = 'SELECT * FROM usuarios';
         conexion.query(get_usuarios, (err, res, fields) => {
